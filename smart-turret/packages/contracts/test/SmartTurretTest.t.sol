@@ -33,10 +33,10 @@ contract SmartTurretTest is MudTest {
   uint256 smartTurretId;
   SmartTurretLib.World smartTurret;
 
-  TargetPriority[] inputPriorityQueue;
-  Turret inputTurret;
-  SmartTurretTarget inputTurretTargetCharacter;
-  SmartTurretTarget inputTurretTargetOtherCharacter;
+  TargetPriority[] previousPriorityQueue;
+  Turret turret;
+  SmartTurretTarget previousTurretTarget;
+  SmartTurretTarget newTurretTarget;
 
   function setUp() public override {
     super.setUp();
@@ -50,16 +50,8 @@ contract SmartTurretTest is MudTest {
       namespace: FRONTIER_WORLD_DEPLOYMENT_NAMESPACE
     });
 
-    inputTurret = Turret({ weaponTypeId: 1, ammoTypeId: 1, chargesLeft: 100 });
-    inputTurretTargetCharacter = SmartTurretTarget({
-      shipId: 1,
-      shipTypeId: 1,
-      characterId: characterId,
-      hpRatio: 100,
-      shieldRatio: 100,
-      armorRatio: 100
-    });
-    inputTurretTargetOtherCharacter = SmartTurretTarget({
+    turret = Turret({ weaponTypeId: 1, ammoTypeId: 1, chargesLeft: 100 });
+    previousTurretTarget = SmartTurretTarget({
       shipId: 1,
       shipTypeId: 1,
       characterId: otherCharacterId,
@@ -67,9 +59,16 @@ contract SmartTurretTest is MudTest {
       shieldRatio: 100,
       armorRatio: 100
     });
+    newTurretTarget = SmartTurretTarget({
+      shipId: 1,
+      shipTypeId: 1,
+      characterId: characterId,
+      hpRatio: 100,
+      shieldRatio: 100,
+      armorRatio: 100
+    });
 
-    inputPriorityQueue.push(TargetPriority({ target: inputTurretTargetCharacter, weight: 100 }));
-    inputPriorityQueue.push(TargetPriority({ target: inputTurretTargetOtherCharacter, weight: 100 }));
+    previousPriorityQueue.push(TargetPriority({ target: previousTurretTarget, weight: 100 }));
   }
 
   function testWorldExists() public {
@@ -99,13 +98,12 @@ contract SmartTurretTest is MudTest {
     TargetPriority[] memory returnTargetQueue = smartTurret.inProximity(
       smartTurretId,
       characterId,
-      inputPriorityQueue,
-      inputTurret,
-      inputTurretTargetOtherCharacter
+      previousPriorityQueue,
+      turret,
+      newTurretTarget
     );
 
-    assertEq(returnTargetQueue.length, 2);
-    assertEq(returnTargetQueue[0].target.characterId, characterId);
-    assertEq(returnTargetQueue[1].target.characterId, otherCharacterId);
+    assertEq(returnTargetQueue.length, 1);
+    assertEq(returnTargetQueue[0].target.characterId, previousTurretTarget.characterId);
   }
 }

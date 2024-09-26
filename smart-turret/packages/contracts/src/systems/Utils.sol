@@ -19,26 +19,32 @@ library Utils {
       });
   }
 
-  function filterPriorityQueue(
+  function updatePriorityQueue(
     TargetPriority[] memory priorityQueue,
+    TargetPriority memory newTarget,
     function(TargetPriority memory) returns (bool) filter
   ) internal returns (TargetPriority[] memory) {
     // Initialize the array with the maximum possible size
-    TargetPriority[] memory filteredPriorityQueue = new TargetPriority[](priorityQueue.length);
+    TargetPriority[] memory updatedPriorityQueue = new TargetPriority[](priorityQueue.length + 1);
 
     // Filter the input array and count the filtered elements
     uint256 count;
     for (uint256 i; i < priorityQueue.length; i++) {
       if (filter(priorityQueue[i])) {
-        filteredPriorityQueue[count++] = priorityQueue[i];
+        updatedPriorityQueue[count++] = priorityQueue[i];
       }
+    }
+
+    // Add the new target if it passes the filter
+    if (filter(newTarget)) {
+      updatedPriorityQueue[count++] = newTarget;
     }
 
     // Resize the output array to the right size
     assembly {
-      mstore(filteredPriorityQueue, count)
+      mstore(updatedPriorityQueue, count)
     }
 
-    return filteredPriorityQueue;
+    return updatedPriorityQueue;
   }
 }
