@@ -19,6 +19,7 @@ import { State } from "@eveworld/world/src/codegen/common.sol";
 
 import { Utils } from "../src/systems/Utils.sol";
 import { IWorld } from "../src/codegen/world/IWorld.sol";
+import { GuestList } from "../src/codegen/tables/GuestList.sol";
 
 contract SmartTurretTest is MudTest {
   using SmartTurretUtils for bytes14;
@@ -95,6 +96,10 @@ contract SmartTurretTest is MudTest {
   }
 
   function testInProximity() public {
+    vm.startPrank(0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266);
+    GuestList.setHasAccess(newTurretTarget.characterId, true);
+    vm.stopPrank();
+
     TargetPriority[] memory returnTargetQueue = smartTurret.inProximity(
       smartTurretId,
       characterId,
