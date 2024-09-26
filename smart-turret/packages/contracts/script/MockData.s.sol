@@ -42,6 +42,8 @@ contract MockData is Script {
     // Start broadcasting transactions from the deployer account
     vm.startBroadcast(deployerPrivateKey);
     uint256 smartTurretId = vm.envUint("SMART_TURRET_ID");
+    uint256 characterId = vm.envUint("CHARACTER_ID");
+    uint256 corpId = vm.envUint("CORP_ID");
 
     smartCharacter = SmartCharacterLib.World({
       iface: IBaseWorld(worldAddress),
@@ -60,9 +62,9 @@ contract MockData is Script {
 
     //Create a smart character
     smartCharacter.createCharacter(
-      11111,
+      characterId,
       address(0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266),
-      100,
+      corpId,
       EntityRecordCharacter({ typeId: 111, itemId: 1, volume: 10 }),
       EntityRecordOffchainTableData({ name: "characterName", dappURL: "noURL", description: "." }),
       "tokenCid"

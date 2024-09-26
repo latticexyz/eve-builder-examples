@@ -10,4 +10,6 @@ procs:
     shell: anvil --base-fee 0 --block-time 2 --fork-url http://127.0.0.1:8545 --port 1234
   explorer:
     cwd: packages/contracts
-    shell: pnpm explorer --rpc http://127.0.0.1:1234
+    shell: pnpm explorer
+    env:
+      RPC_HTTP_URL: "http://127.0.0.1:1234"
