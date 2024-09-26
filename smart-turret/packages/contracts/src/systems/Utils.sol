@@ -19,32 +19,38 @@ library Utils {
       });
   }
 
-  function updatePriorityQueue(
+  function filterPriorityQueue(
     TargetPriority[] memory priorityQueue,
-    TargetPriority memory newTarget,
-    function(TargetPriority memory) returns (bool) filter
+    function(SmartTurretTarget memory) returns (bool) filter
   ) internal returns (TargetPriority[] memory) {
     // Initialize the array with the maximum possible size
-    TargetPriority[] memory updatedPriorityQueue = new TargetPriority[](priorityQueue.length + 1);
+    TargetPriority[] memory filteredPriorityQueue = new TargetPriority[](priorityQueue.length);
 
     // Filter the input array and count the filtered elements
     uint256 count;
     for (uint256 i; i < priorityQueue.length; i++) {
-      if (filter(priorityQueue[i])) {
-        updatedPriorityQueue[count++] = priorityQueue[i];
+      if (filter(priorityQueue[i].target)) {
+        filteredPriorityQueue[count++] = priorityQueue[i];
       }
-    }
-
-    // Add the new target if it passes the filter
-    if (filter(newTarget)) {
-      updatedPriorityQueue[count++] = newTarget;
     }
 
     // Resize the output array to the right size
     assembly {
-      mstore(updatedPriorityQueue, count)
+      mstore(filteredPriorityQueue, count)
     }
 
-    return updatedPriorityQueue;
+    return filteredPriorityQueue;
+  }
+
+  function pushPriorityQueue(
+    TargetPriority[] memory priorityQueue,
+    TargetPriority memory newTarget
+  ) internal pure returns (TargetPriority[] memory) {
+    TargetPriority[] memory newPriorityQueue = new TargetPriority[](priorityQueue.length + 1);
+    for (uint256 i; i < priorityQueue.length; i++) {
+      newPriorityQueue[i] = priorityQueue[i];
+    }
+    newPriorityQueue[priorityQueue.length] = newTarget;
+    return newPriorityQueue;
   }
 }
