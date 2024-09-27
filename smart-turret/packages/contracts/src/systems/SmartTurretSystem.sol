@@ -46,15 +46,15 @@ contract SmartTurretSystem is System {
     Turret memory turret,
     SmartTurretTarget memory turretTarget
   ) public returns (TargetPriority[] memory updatedPriorityQueue) {
-    //TODO: Implement the logic
     updatedPriorityQueue = Utils.filterPriorityQueue(priorityQueue, _shouldShoot);
     if (_shouldShoot(turretTarget)) {
       updatedPriorityQueue = Utils.pushPriorityQueue(updatedPriorityQueue, TargetPriority(turretTarget, 100));
     }
   }
 
+  //TODO: Implement the logic
   function _shouldShoot(SmartTurretTarget memory target) internal returns (bool) {
-    return !GuestList.getHasAccess(target.characterId);
+    return true;
   }
 
   /**
