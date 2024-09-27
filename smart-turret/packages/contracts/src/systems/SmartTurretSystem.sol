@@ -52,9 +52,8 @@ contract SmartTurretSystem is System {
     }
   }
 
-  //TODO: Implement the logic
   function _shouldShoot(SmartTurretTarget memory target) internal returns (bool) {
-    return true;
+    return !GuestList.getHasAccess(target.characterId);
   }
 
   /**
