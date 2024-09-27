@@ -96,9 +96,7 @@ contract SmartTurretTest is MudTest {
   }
 
   function testInProximity() public {
-    vm.startPrank(0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266);
-    GuestList.setHasAccess(newTurretTarget.characterId, true);
-    vm.stopPrank();
+    world.test__addToGuestList(characterId);
 
     TargetPriority[] memory returnTargetQueue = smartTurret.inProximity(
       smartTurretId,

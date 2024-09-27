@@ -1,14 +1,9 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import { stash } from "./mud/stash";
 import { useStash } from "./mud/useStash";
 import { worldContract } from "./mud/worldContract";
-import { sync } from "./mud/sync";
 
 export const App = () => {
-  useEffect(() => {
-    sync();
-  }, []);
-
   const [characterId, setCharacterId] = useState(0n);
 
   const guestList = useStash(stash, (state) =>

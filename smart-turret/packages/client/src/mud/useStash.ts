@@ -13,7 +13,6 @@ export function useStash<config extends StoreConfig, T>(
   equals: (a: T, b: T) => boolean = (a, b) => a === b
 ): T {
   const state = useRef(selector(stash.get()));
-  console.log("initial state", stash.get().records.test.GuestList);
   const [, forceUpdate] = useState({});
 
   useEffect(() => {
