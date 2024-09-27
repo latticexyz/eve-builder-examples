@@ -13,8 +13,10 @@
   "dependencies": {
     "@latticexyz/common": "2.2.10",
     "@latticexyz/dev-tools": "2.2.10",
+    "@latticexyz/explorer": "^2.2.10",
     "@latticexyz/react": "2.2.10",
     "@latticexyz/schema-type": "2.2.10",
+    "@latticexyz/stash": "^2.2.10",
     "@latticexyz/store-sync": "2.2.10",
     "@latticexyz/utils": "2.2.10",
     "@latticexyz/world": "2.2.10",

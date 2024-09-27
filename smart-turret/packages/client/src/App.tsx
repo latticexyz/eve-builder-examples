@@ -1,21 +1,45 @@
-import { useMUD } from "./MUDContext";
-
-const styleUnset = { all: "unset" } as const;
+import { useCallback, useEffect, useState } from "react";
+import { stash } from "./mud/stash";
+import { useStash } from "./mud/useStash";
+import { worldContract } from "./mud/worldContract";
+import { sync } from "./mud/sync";
 
 export const App = () => {
-  const {
-    network: { tables, useStore }
-  } = useMUD();
+  useEffect(() => {
+    sync();
+  }, []);
 
-  const tasks = useStore((state) => {
-    const records = Object.values(state.getRecords(tables.Tasks));
-    records.sort((a, b) => Number(a.value.createdAt - b.value.createdAt));
-    return records;
-  });
+  const [characterId, setCharacterId] = useState(0n);
+
+  const guestList = useStash(stash, (state) =>
+    Object.values(state.records.test.GuestList)
+  );
+
+  const addToGuestList = useCallback(() => {
+    worldContract.write.test__addToGuestList([characterId]);
+  }, [characterId]);
 
   return (
-    <>
-
-    </>
+    <div>
+      <div>
+        <input
+          id="characterId"
+          placeholder="Character ID"
+          value={String(characterId)}
+          onChange={(e) => setCharacterId(BigInt(e.target.value))}
+        ></input>
+        <button onClick={addToGuestList}>Add to guest list</button>
+      </div>
+      <div>
+        Guest list:
+        <ul>
+          {guestList.map((item) => (
+            <li key={"guestList-" + item.characterId}>
+              {String(item.characterId)}: {String(item.hasAccess)}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
   );
 };
