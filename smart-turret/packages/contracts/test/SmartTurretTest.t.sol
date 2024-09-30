@@ -96,6 +96,8 @@ contract SmartTurretTest is MudTest {
   }
 
   function testInProximity() public {
+    world.test__addToGuestList(newTurretTarget.characterId);
+
     TargetPriority[] memory returnTargetQueue = smartTurret.inProximity(
       smartTurretId,
       characterId,
@@ -104,8 +106,7 @@ contract SmartTurretTest is MudTest {
       newTurretTarget
     );
 
-    assertEq(returnTargetQueue.length, 2);
+    assertEq(returnTargetQueue.length, 1);
     assertEq(returnTargetQueue[0].target.characterId, previousTurretTarget.characterId);
-    assertEq(returnTargetQueue[1].target.characterId, newTurretTarget.characterId);
   }
 }
