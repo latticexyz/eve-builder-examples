@@ -21,6 +21,9 @@ import { Utils as SmartCharacterUtils } from "@eveworld/world/src/modules/smart-
 import { CharactersTableData, CharactersTable } from "@eveworld/world/src/codegen/tables/CharactersTable.sol";
 import { TargetPriority, Turret, SmartTurretTarget } from "@eveworld/world/src/modules/smart-turret/types.sol";
 
+import { Utils } from "./Utils.sol";
+import { GuestList } from "../codegen/tables/GuestList.sol";
+
 /**
  * @dev This contract is an example for implementing logic to a smart turret
  */
@@ -43,8 +46,15 @@ contract SmartTurretSystem is System {
     Turret memory turret,
     SmartTurretTarget memory turretTarget
   ) public returns (TargetPriority[] memory updatedPriorityQueue) {
-    //TODO: Implement the logic
-    return priorityQueue;
+    updatedPriorityQueue = Utils.filterPriorityQueue(priorityQueue, _shouldShoot);
+    if (_shouldShoot(turretTarget)) {
+      updatedPriorityQueue = Utils.pushPriorityQueue(updatedPriorityQueue, TargetPriority(turretTarget, 100));
+    }
+  }
+
+  //TODO: Implement the logic
+  function _shouldShoot(SmartTurretTarget memory target) internal returns (bool) {
+    return true;
   }
 
   /**

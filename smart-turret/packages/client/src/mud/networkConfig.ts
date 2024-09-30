@@ -21,8 +21,18 @@ import worlds from "contracts/worlds.json";
  * The supported chains.
  */
 import { supportedChains } from "./supportedChains";
+import { Hex } from "viem";
+import { MUDChain } from "@latticexyz/common/chains";
 
-export async function getNetworkConfig() {
+type NetworkConfig = {
+  privateKey: Hex;
+  chainId: number;
+  chain: MUDChain;
+  worldAddress: Hex;
+  initialBlockNumber: bigint;
+};
+
+function getNetworkConfig(): NetworkConfig {
   const params = new URLSearchParams(window.location.search);
 
   /*
@@ -33,7 +43,12 @@ export async function getNetworkConfig() {
    *    vite dev server was started or client was built
    * 4. The default, 31337 (anvil)
    */
-  const chainId = Number(params.get("chainId") || params.get("chainid") || import.meta.env.VITE_CHAIN_ID || 31337);
+  const chainId = Number(
+    params.get("chainId") ||
+      params.get("chainid") ||
+      import.meta.env.VITE_CHAIN_ID ||
+      31337
+  );
 
   /*
    * Find the chain (unless it isn't in the list of supported chains).
@@ -50,9 +65,11 @@ export async function getNetworkConfig() {
    * provide it as worldAddress in the query string.
    */
   const world = worlds[chain.id.toString()];
-  const worldAddress = params.get("worldAddress") || world?.address;
+  const worldAddress = (params.get("worldAddress") as Hex) || world?.address;
   if (!worldAddress) {
-    throw new Error(`No world address found for chain ${chainId}. Did you run \`mud deploy\`?`);
+    throw new Error(
+      `No world address found for chain ${chainId}. Did you run \`mud deploy\`?`
+    );
   }
 
   /*
@@ -62,15 +79,22 @@ export async function getNetworkConfig() {
    * on the URL (as initialBlockNumber) or in the worlds.json
    * file. If neither has it, it starts at the first block, zero.
    */
-  const initialBlockNumber = params.has("initialBlockNumber")
-    ? Number(params.get("initialBlockNumber"))
-    : world?.blockNumber ?? 0n;
+  const initialBlockNumber = BigInt(
+    params.has("initialBlockNumber")
+      ? params.get("initialBlockNumber")!
+      : world?.blockNumber ?? 0
+  );
 
   return {
-    privateKey: getBurnerPrivateKey(),
+    // For testing purposes private key funded on local chain.
+    // Replace with `getBurnerPrivateKey()` or external wallet connection.
+    privateKey:
+      "0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80",
     chainId,
     chain,
     worldAddress,
     initialBlockNumber,
   };
 }
+
+export const networkConfig: NetworkConfig = getNetworkConfig();
