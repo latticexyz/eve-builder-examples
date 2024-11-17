@@ -1,7 +1,1 @@
-mock-data/cache/
-mock-data/node_modules/
-mock-data/node_modules/.pnpm/
-mock-data/out/
-mock-data/broadcast/
-vending-machine/packages/contracts/.env
 .DS_Store
