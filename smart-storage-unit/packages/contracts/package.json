@@ -1,14 +1,14 @@
 {
-  "name": "contracts",
+  "name": "smart-storage-unit-example-contracts",
   "version": "0.0.0",
   "private": true,
   "license": "MIT",
   "scripts": {
     "build": "mud build",
     "clean": "forge clean && rimraf src/codegen",
-    "deploy:local": "pnpm run build && mud deploy --profile=local",
-    "deploy:garnet": "pnpm run build && mud deploy --profile=garnet",
-    "deploy:redstone": "pnpm run build && mud deploy --profile=redstone",
+    "deploy:local": "pnpm run build && mud deploy --profile=local --worldAddress ${WORLD_ADDRESS:-$1}",
+    "deploy:garnet": "pnpm run build && mud deploy --profile=garnet --worldAddress ${WORLD_ADDRESS:-$1}",
+    "deploy:redstone": "pnpm run build && mud deploy --profile=redstone --worldAddress ${WORLD_ADDRESS:-$1}",
     "dev": "pnpm mud dev-contracts",
     "lint": "pnpm run prettier && pnpm run solhint",
     "prettier": "prettier --write 'src/**/*.sol'",
@@ -17,7 +17,10 @@
     "test": ". ./.env && forge test --fork-url $RPC_URL",
     "mock-data": ". ./.env && pnpm forge script ./script/MockSsuData.s.sol:MockSsuData --broadcast --rpc-url $RPC_URL --chain-id $CHAIN_ID --sig \"run(address)\" $WORLD_ADDRESS -vvv",
     "configure-ratio": ". ./.env && pnpm forge script ./script/ConfigureRatio.s.sol:ConfigureRatio --broadcast --rpc-url $RPC_URL --chain-id $CHAIN_ID --sig \"run(address)\" $WORLD_ADDRESS -vvv",
-    "execute": ". ./.env && pnpm forge script ./script/Execute.s.sol:Execute --broadcast --rpc-url $RPC_URL --chain-id $CHAIN_ID --sig \"run(address)\" $WORLD_ADDRESS -vvv"
+    "execute": ". ./.env && pnpm forge script ./script/Execute.s.sol:Execute --broadcast --rpc-url $RPC_URL --chain-id $CHAIN_ID --sig \"run(address)\" $WORLD_ADDRESS -vvv",
+    "env-nebula": "bash ../../batch-files/ConvertEnvToNebula.sh",
+    "env-nova": "bash ../../batch-files/ConvertEnvToNova.sh",
+    "env-local": "bash ../../batch-files/ConvertEnvToLocal.sh"
   },
   "dependencies": {
     "@eveworld/common-constants": "0.0.13",

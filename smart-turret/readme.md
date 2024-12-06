@@ -49,6 +49,7 @@ You should then see the tests pass:
 
 ![SSU Tests](../readme-imgs/tests-turret.png)
 
+
 ## Deployment to Nebula / Nova<a id='Nebula'></a>
 ### Step 0: Deploy the example contracts to Nova or Nebula
 Move to the example directory with:
@@ -62,43 +63,36 @@ Then install the Solidity dependencies for the contracts:
 pnpm install
 ```
 
-Next, retrieve the world address through the below links depending on which server you want to deploy to and then replace <worldAddress> with the world address. 
-
-- [Nebula World Address](https://blockchain-gateway-nebula.nursery.reitnorf.com/config)
-- [Nova World Address](https://blockchain-gateway-nova.nursery.reitnorf.com/config)
-
-<br />
+Next, convert the [.env](./packages/contracts/.env) **WORLD_ADDRESS** value to either Nebula or Nova using the following command for Nebula:
 
 ```bash
-pnpm run deploy:garnet --worldAddress <worldAddress> 
+pnpm env-nebula
 ```
 
-eg: `pnpm deploy:garnet --worldAddress 0xafc8e4fd5eee66590c93feebf526e1aa2e93c6c3`
+Or for Nova:
+```bash
+pnpm env-nova
+```
 
-Once the deployment is successful, you'll see a screen similar to the one below. This process deploys the SSU contract. 
-![alt text](../readme-imgs/deploy.png)
-
-### Step 1: Setup the environment variables 
-Next, replace the following values in the [.env](./packages/contracts/.env) file with the respective values 
-
-For Nova and Nebula, Get your recovery phrase from the game wallet, import into EVE Wallet and then grab the private key from there.
+Now replace the private key in the [.env](./packages/contracts/.env) file. Get your recovery phrase from the game wallet, import into EVE Wallet and then grab the private key from there.
 
 ```bash
 PRIVATE_KEY=0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80
 ```
 
-For Nova and Nebula, get the world address from the configs.
-
-![alt text](../readme-imgs/world-address.png)
+Then deploy the contract using:
 
 ```bash
-#WORLD ADDRESS COPIED FROM DOCKER LOGS FOR LOCAL
-WORLD_ADDRESS=
+pnpm run deploy:garnet
 ```
 
-For Nova or Nebula, the smart turret id is available once you have deployed an Smart Turret in the game. 
+Once the deployment is successful, you'll see a screen similar to the one below. This process deploys the Smart Turret contract. 
+![alt text](../readme-imgs/deploy.png)
 
-Right click your Smart Turret, click Interact and open the dapp window and copy the smart turret id.
+### Step 1: Setup the environment variables 
+Next, replace the following values in the [.env](./packages/contracts/.env) file with the below steps.
+
+For Nova or Nebula, the smart turret id is available once you have deployed an Smart Turret in the game. Right click your Smart Turret, click Interact and open the dapp window and copy the smart turret id.
 
 ```bash
 #SMART TURRET ID (Only need to change if you are running on Devnet)

@@ -48,6 +48,7 @@ You should then see the tests pass:
 
 ![SSU Tests](../readme-imgs/tests-gate.png)
 
+
 ## Deployment to Nebula / Nova<a id='Nebula'></a>
 ### Step 0: Deploy the example contracts to Nova or Nebula
 Move to the example directory with:
@@ -61,50 +62,50 @@ Then install the Solidity dependencies for the contracts:
 pnpm install
 ```
 
-Next, retrieve the world address through the below links depending on which server you want to deploy to and then replace <worldAddress> with the world address. 
-
-- [Nebula World Address](https://blockchain-gateway-nebula.nursery.reitnorf.com/config)
-- [Nova World Address](https://blockchain-gateway-nova.nursery.reitnorf.com/config)
-
-<br />
+Next, convert the [.env](./packages/contracts/.env) **WORLD_ADDRESS** value to either Nebula or Nova using the following command for Nebula:
 
 ```bash
-pnpm run deploy:garnet --worldAddress <worldAddress> 
+pnpm env-nebula
 ```
 
-eg: `pnpm deploy:garnet --worldAddress 0xafc8e4fd5eee66590c93feebf526e1aa2e93c6c3`
+Or for Nova:
+```bash
+pnpm env-nova
+```
 
-Once the deployment is successful, you'll see a screen similar to the one below. This process deploys the SSU contract. 
-
-![alt text](../readme-imgs/deploy.png)
-
-### Step 1: Setup the environment variables 
-Next, replace the following values in the [.env](./packages/contracts/.env) file with the respective values 
-
-You can change values in the .env file for Nova and Nebula, though they are optional for local testing.
-
-For Nova and Nebula, Get your recovery phrase from the game wallet, import into EVE Wallet and then grab the private key from there.
+Now replace the private key in the [.env](./packages/contracts/.env) file. Get your recovery phrase from the game wallet, import into EVE Wallet and then grab the private key from there.
 
 ```bash
 PRIVATE_KEY=0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80
 ```
 
-For Nova and Nebula, get the world address from the configs. You can deploy your own ERC20 token or use the EVE Token address in the config
-
-![alt text](../readme-imgs/world-address.png)
+Then deploy the contract using:
 
 ```bash
-#WORLD ADDRESS COPIED FROM DOCKER LOGS FOR LOCAL
-WORLD_ADDRESS=
+pnpm run deploy:garnet
 ```
-For Nova or Nebula, the smart gate id is available once you have deployed an Smart Gate in the game. 
 
-Right click your Smart Gate, click Interact and open the dapp window and copy the smart gate id.
+Once the deployment is successful, you'll see a screen similar to the one below. This process deploys the Smart Gate contracts. 
 
-You can retrieve the Corp ID from:
+![alt text](../readme-imgs/deploy.png)
+
+### Step 1: Setup the environment variables 
+Next, replace the following values in the [.env](./packages/contracts/.env) file with the below steps.
+
+For Nova or Nebula, the smart gate id is available once you have deployed an Smart Gate in the game. Right click your Smart Gate, click Interact and open the dapp window and copy the smart gate id.
+
+```bash
+# Copy this info from in game smart gate
+SOURCE_GATE_ID=34818344039668088032259299209624217066809194721387714788472158182502870248994
+
+# Copy this info from in game smart gate
+DESTINATION_GATE_ID=67387866010353549996346280963079126762450299713900890730943797543376801696007
+```
+
+Now set the allowed corp ID variable. You can retrieve the Corp ID by:
 1. Retrieve your public address from searching your username here: [Smart Characters World API](https://blockchain-gateway-nebula.nursery.reitnorf.com/smartcharacters)
-2. Use this link: https://blockchain-gateway-nebula.nursery.reitnorf.com/smartcharacters/ADDRESS and replace "ADDRESS" with the address from the previous step.
-3. Use the "corpId" value which should be in:
+2. Use this link: https://blockchain-gateway-nebula.nursery.reitnorf.com/smartcharacters/ADDRESS and replace **"ADDRESS"** with the address from the previous step.
+3. Use the **"corpId"** value which should be in:
 ```json
 {
     "address": "0x9dcd62f5c02e7066a3154bc3ba029e85345a5ce9",
@@ -114,15 +115,7 @@ You can retrieve the Corp ID from:
     ...
 ```
 
-Then set the below values:
-
 ```bash
-# Copy this info from in game smart gate
-SOURCE_GATE_ID=34818344039668088032259299209624217066809194721387714788472158182502870248994
-
-# Copy this info from in game smart gate
-DESTINATION_GATE_ID=67387866010353549996346280963079126762450299713900890730943797543376801696007
-
 # Copy this information from your Smart Character corp ID
 ALLOWED_CORP_ID=3434306
 ```
@@ -131,7 +124,7 @@ ALLOWED_CORP_ID=3434306
 To configure which smart gates will be used, run:
 
 ```bash
-pnpm configure-smart-gate
+pnpm configure-smart-gates
 ```
 
 You can alter the gate ID's and the allowed corp in the .env file as needed.
