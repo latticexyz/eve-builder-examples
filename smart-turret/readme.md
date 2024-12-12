@@ -5,7 +5,7 @@ This guide will walk you through the process of building contracts for the smart
 
 This example shows how to interact with the Smart Turret smart assembly and how to create contracts for it. The Smart Turret allows you to defend an area and can be configured to determine which ships to shoot and the priority to shoot them.
 
-You can use [Deployment and Testing in Local](#Local) to test the example on your computer and [Deployment to Nebula / Nova](#Nebula) to deploy it to the game.
+You can use [Deployment and Testing in Local](#Local) to test the example on your computer and [Deployment to Stillness](#Stillness) to deploy it to the game.
 
 ### Additional Information
 
@@ -37,21 +37,37 @@ Once the contracts have been deployed you should see the below message. When cha
 
 ![](../readme-imgs/deploy.png)
 
-### Step 1: Tests for the existing world **(Local Development Only)**
-To run tests to make sure that the Smart Turret example is working, you can click on the shell process as seen in the image below, click in the terminal and then run:
+### Step 1: Mock data for the existing world **(Local Development Only)**
+Click on the "shell" process and then click on the main terminal window. 
 
-```bash
-pnpm test
-```
+To generate mock data for testing the Smart Turret logic on the local world, you can click on the shell process as seen in the image below, click in the terminal and then run:
+
 ![Processes Image](../readme-imgs/processes.png)
 
-You should then see the tests pass:
+```bash
+pnpm mock-data
+```
 
-![SSU Tests](../readme-imgs/tests-turret.png)
+This will create the on-chain turret, fuel it, bring it online, and create a test smart character.
 
+### Step 2: Configure Smart Turret
+To set the Smart Turret, turret ID use:
 
-## Deployment to Nebula / Nova<a id='Nebula'></a>
-### Step 0: Deploy the example contracts to Nova or Nebula
+```bash
+pnpm configure-smart-turret
+```
+
+You can adjust the values for the SSU_ID, in and out item ID's and the ratios in the .env file as needed, though they are optional.
+
+### Step 3: Test The Smart Turret (Optional)
+To test the Smart Turret In Proximity functionality you can use the follow command:
+
+```bash
+pnpm execute
+```
+
+## Deployment to Stillness<a id='Stillness'></a>
+### Step 0: Deploy the example contracts to Stillness
 Move to the example directory with:
 
 ```bash
@@ -63,18 +79,15 @@ Then install the Solidity dependencies for the contracts:
 pnpm install
 ```
 
-Next, convert the [.env](./packages/contracts/.env) **WORLD_ADDRESS** value to either Nebula or Nova using the following command for Nebula:
+Next, convert the [.env](./packages/contracts/.env) **WORLD_ADDRESS** and **RPC_URL** value to point to Stillness using: 
 
 ```bash
-pnpm env-nebula
+pnpm env-stillness
 ```
 
-Or for Nova:
-```bash
-pnpm env-nova
-```
+Now replace the private key in the [.env](./packages/contracts/.env) file. Get your recovery phrase from the game wallet, import into EVE Wallet and then retrieve the private key as visible in the image below.
 
-Now replace the private key in the [.env](./packages/contracts/.env) file. Get your recovery phrase from the game wallet, import into EVE Wallet and then grab the private key from there.
+![Private Key](../readme-imgs/private-key.png)
 
 ```bash
 PRIVATE_KEY=0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80
@@ -87,12 +100,13 @@ pnpm run deploy:garnet
 ```
 
 Once the deployment is successful, you'll see a screen similar to the one below. This process deploys the Smart Turret contract. 
+
 ![alt text](../readme-imgs/deploy.png)
 
 ### Step 1: Setup the environment variables 
 Next, replace the following values in the [.env](./packages/contracts/.env) file with the below steps.
 
-For Nova or Nebula, the smart turret id is available once you have deployed an Smart Turret in the game. Right click your Smart Turret, click Interact and open the dapp window and copy the smart turret id.
+For Stillness, the smart turret id is available once you have deployed an Smart Turret in the game. Right click your Smart Turret, click Interact and open the dapp window and copy the smart turret id.
 
 ```bash
 #SMART TURRET ID (Only need to change if you are running on Devnet)

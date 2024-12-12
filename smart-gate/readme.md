@@ -7,7 +7,7 @@ The Smart Gate allows players to create player made transport gates, connecting 
 
 This example shows how to create a Smart Gate that only allows members of a specific corporation to use the Smart Gate.
 
-You can use [Deployment and Testing in Local](#Local) to test the example on your computer and [Deployment to Nebula / Nova](#Nebula) to deploy it to the game.
+You can use [Deployment and Testing in Local](#Local) to test the example on your computer and [Deployment to Stillness](#Stillness) to deploy it to the game.
 
 ### Additional Information
 
@@ -35,22 +35,50 @@ This will deploy the contracts to a forked version of your local world for testi
 pnpm dev
 ```
 
-### Step 1: Tests for the existing world **(Local Development Only)**
-To run tests to make sure that the SSU example is working, you can click on the shell process as seen in the image below, click in the terminal and then run:
+Once deployment is successful, you'll see a screen similar to the one below. This process creates a forked version of the local world and deploys the Smart Turret contracts.
 
+![alt text](../readme-imgs/deploy.png)
 
-```bash
-pnpm test
-```
+The forked local world means that any changes that happen when running pnpm dev are reverted when closing it, allowing you to quickly reset and try something different.
+
+### Step 1: Mock data for the existing world **(Local Development Only)**
+Click on the "shell" process and then click on the main terminal window. 
+
+To generate mock data for testing the Smart Gate logic on the local world, run the following command:
+
 ![Processes Image](../readme-imgs/processes.png)
 
-You should then see the tests pass:
+```bash
+pnpm mock-data
+```
 
-![SSU Tests](../readme-imgs/tests-gate.png)
+This will create the on-chain Gates, fuel them, bring them online, and create a test smart character.
 
+### Step 2: Configure Smart Gate
+To configure which smart gates will be used, run:
 
-## Deployment to Nebula / Nova<a id='Nebula'></a>
-### Step 0: Deploy the example contracts to Nova or Nebula
+```bash
+pnpm configure-smart-gate
+```
+
+You can adjust the values for the SSU_ID, in and out item ID's and the ratios in the .env file as needed, though they are optional.
+
+### Step 3: Link Gates
+To use the smart gates, you need to link them together to create a connection. To link the source and destination gates use:
+
+```bash copy
+pnpm link-gates
+```
+
+### Step 4: Test The Smart Gate (Optional)
+To test the smart gate and check the canJump, use the following command:
+
+```bash
+pnpm execute
+```
+
+## Deployment to Stillness<a id='Stillness'></a>
+### Step 0: Deploy the example contracts to Stillness
 Move to the example directory with:
 
 ```bash
@@ -62,18 +90,15 @@ Then install the Solidity dependencies for the contracts:
 pnpm install
 ```
 
-Next, convert the [.env](./packages/contracts/.env) **WORLD_ADDRESS** value to either Nebula or Nova using the following command for Nebula:
+Next, convert the [.env](./packages/contracts/.env) **WORLD_ADDRESS** and **RPC_URL** value to point to Stillness using: 
 
 ```bash
-pnpm env-nebula
+pnpm env-stillness
 ```
 
-Or for Nova:
-```bash
-pnpm env-nova
-```
+Now replace the private key in the [.env](./packages/contracts/.env) file. Get your recovery phrase from the game wallet, import into EVE Wallet and then retrieve the private key as visible in the image below.
 
-Now replace the private key in the [.env](./packages/contracts/.env) file. Get your recovery phrase from the game wallet, import into EVE Wallet and then grab the private key from there.
+![Private Key](../readme-imgs/private-key.png)
 
 ```bash
 PRIVATE_KEY=0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80
@@ -92,7 +117,7 @@ Once the deployment is successful, you'll see a screen similar to the one below.
 ### Step 1: Setup the environment variables 
 Next, replace the following values in the [.env](./packages/contracts/.env) file with the below steps.
 
-For Nova or Nebula, the smart gate id is available once you have deployed an Smart Gate in the game. Right click your Smart Gate, click Interact and open the dapp window and copy the smart gate id.
+For Stillness, the smart gate id is available once you have deployed an Smart Gate in the game. Right click your Smart Gate, click Interact and open the dapp window and copy the smart gate id.
 
 ```bash
 # Copy this info from in game smart gate
@@ -103,8 +128,8 @@ DESTINATION_GATE_ID=673878660103535499963462809630791267624502997139008907309437
 ```
 
 Now set the allowed corp ID variable. You can retrieve the Corp ID by:
-1. Retrieve your public address from searching your username here: [Smart Characters World API](https://blockchain-gateway-nebula.nursery.reitnorf.com/smartcharacters)
-2. Use this link: https://blockchain-gateway-nebula.nursery.reitnorf.com/smartcharacters/ADDRESS and replace **"ADDRESS"** with the address from the previous step.
+1. Retrieve your character address from searching your username here: [Smart Characters World API](https://blockchain-gateway-stillness.live.tech.evefrontier.com/smartcharacters)
+2. Use this link: https://blockchain-gateway-stillness.live.tech.evefrontier.com/smartcharacters/ADDRESS and replace **"ADDRESS"** with the address from the previous step.
 3. Use the **"corpId"** value which should be in:
 ```json
 {
