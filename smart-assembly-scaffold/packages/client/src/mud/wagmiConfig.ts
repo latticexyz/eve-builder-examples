@@ -1,10 +1,6 @@
 import { http, webSocket } from "viem";
 import { anvil } from "viem/chains";
-import {
-  getDefaultConfig,
-  getWalletConnectConnector,
-  Wallet,
-} from "@rainbow-me/rainbowkit";
+import { getDefaultConfig, Wallet } from "@rainbow-me/rainbowkit";
 import { garnet, redstone } from "@latticexyz/common/chains";
 import {
   coinbaseWallet,
@@ -16,21 +12,20 @@ import {
   walletConnectWallet,
 } from "@rainbow-me/rainbowkit/wallets";
 
-type WalletConnectWalletOptions = Parameters<typeof walletConnectWallet>[0];
 const transports = {
   [anvil.id]: webSocket(),
   [garnet.id]: http(),
   [redstone.id]: http(),
 } as const;
+
 export interface MyWalletOptions {
   projectId: string;
 }
-export const EVEVault =
-  (options: MyWalletOptions) =>
-  (
-    createWalletParams: Omit<WalletConnectWalletOptions, "projectId">,
-  ): Wallet => ({
-    id: "eveVault",
+
+export const EVEVault = (): Wallet => {
+  const base = oneKeyWallet();
+  return {
+    ...base,
     name: "EVE Vault",
     iconUrl: "https://vault.evefrontier.com/favicon-16.png",
     iconBackground: "#000",
@@ -90,10 +85,8 @@ export const EVEVault =
         ],
       },
     },
-    createConnector: getWalletConnectConnector({
-      projectId: options.projectId,
-    }),
-  });
+  };
+};
 
 export const wagmiConfig = getDefaultConfig({
   projectId: "EVE_FRONTIER_DAPP",
@@ -101,7 +94,7 @@ export const wagmiConfig = getDefaultConfig({
   wallets: [
     {
       groupName: "Recommended",
-      wallets: [EVEVault({ projectId: "EVE_FRONTIER_DAPP" }), safeWallet],
+      wallets: [EVEVault, safeWallet],
     },
     {
       groupName: "Other",
@@ -116,7 +109,7 @@ export const wagmiConfig = getDefaultConfig({
     },
   ],
   autoConnect: true,
-  multiInjectedProviderDiscovery: false,
+  multiInjectedProviderDiscovery: true,
   chains: [
     {
       ...redstone,

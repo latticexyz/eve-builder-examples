@@ -21,7 +21,7 @@ export async function getWorldDeploy(chainId: number): Promise<{
   console.log("chain:", chainId, "world:", deploy);
   return {
     chainId,
-    address: deploy.address,
+    address: deploy.address as Address,
     blockNumber: deploy.blockNumber != null ? BigInt(deploy.blockNumber) : null,
   };
 }
