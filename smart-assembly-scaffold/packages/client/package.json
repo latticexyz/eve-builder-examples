@@ -12,6 +12,7 @@
     "test": "tsc --noEmit"
   },
   "dependencies": {
+    "@eveworld/world": "0.0.17",
     "@latticexyz/common": "2.2.15-entrykit-1c24e4739090d185171d9f8e4a257735e4710b70",
     "@latticexyz/config": "2.2.15-entrykit-1c24e4739090d185171d9f8e4a257735e4710b70",
     "@latticexyz/explorer": "2.2.15-entrykit-1c24e4739090d185171d9f8e4a257735e4710b70",

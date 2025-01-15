@@ -18,6 +18,7 @@ export type Props = {
   address: Address;
   startBlock?: bigint;
   stash: Stash;
+  worldStash: Stash;
   children: ReactNode;
 };
 
@@ -25,6 +26,7 @@ export function StashSyncProvider({
   address,
   startBlock,
   stash,
+  worldStash,
   children,
 }: Props) {
   const existingValue = useContext(StashSyncContext);
@@ -42,7 +44,7 @@ export function StashSyncProvider({
     queryFn: () =>
       // TODO: clear stash
       syncToStash({
-        stash,
+        stash: { ...stash, ...worldStash },
         publicClient: client.extend(publicActions) as PublicClient,
         address,
         startBlock,

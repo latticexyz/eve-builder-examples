@@ -4,16 +4,19 @@ import { useAccount } from "wagmi";
 import "./App.css";
 import "@rainbow-me/rainbowkit/styles.css";
 
-import { EveAlert, EveLayout } from "@eveworld/ui-components";
-import { useNotification, useSmartObject } from "@eveworld/contexts";
+import { ConnectWallet, EveAlert, EveLayout } from "@eveworld/ui-components";
+import { useNotification } from "@eveworld/contexts";
 import EntityView from "./components/EntityView";
 import { Explorer } from "./Explorer";
+import { useSmartCharacter } from "./hooks/useSmartCharacter";
 
 export const App = () => {
   const { isLive, message, percentage } = useSyncProgress();
-  const { smartCharacter } = useSmartObject();
-  const { chain } = useAccount();
+  const { smartCharacter } = useSmartCharacter();
+  const { chain, address } = useAccount();
   const { notification } = useNotification();
+
+  if (!address) return <ConnectWallet />;
 
   return (
     <>

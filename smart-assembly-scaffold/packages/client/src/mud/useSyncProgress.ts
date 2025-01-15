@@ -1,4 +1,4 @@
-import { stash } from "./stash";
+import { stash, worldStash } from "./stash";
 import { initialProgress, SyncProgress } from "@latticexyz/store-sync/internal";
 import { SyncStep } from "@latticexyz/store-sync";
 import { useMemo } from "react";
@@ -11,11 +11,20 @@ export function useSyncProgress() {
     key: {},
     defaultValue: initialProgress,
   });
+
+  const worldProgress = useRecord({
+    stash: worldStash,
+    table: SyncProgress,
+    key: {},
+    defaultValue: initialProgress,
+  });
+
   return useMemo(
     () => ({
       ...progress,
-      isLive: progress.step === SyncStep.LIVE,
+      isLive:
+        progress.step === SyncStep.LIVE && worldProgress.step === SyncStep.LIVE,
     }),
-    [progress],
+    [progress, worldProgress],
   );
 }
