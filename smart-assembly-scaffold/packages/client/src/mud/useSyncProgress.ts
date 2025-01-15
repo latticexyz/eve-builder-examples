@@ -19,11 +19,14 @@ export function useSyncProgress() {
     defaultValue: initialProgress,
   });
 
+  console.log(progress.step);
+  console.log(worldProgress.step);
+
   return useMemo(
     () => ({
       ...progress,
-      isLive:
-        progress.step === SyncStep.LIVE && worldProgress.step === SyncStep.LIVE,
+      isLive: worldProgress.step === SyncStep.LIVE,
+      // progress.step === SyncStep.LIVE && worldProgress.step === SyncStep.LIVE,
     }),
     [progress, worldProgress],
   );

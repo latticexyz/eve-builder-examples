@@ -1,35 +1,40 @@
 import { useRecord } from "../mud/useRecord";
 import mudConfig from "@eveworld/world/mud.config";
 import { SmartCharacter } from "@eveworld/types";
-import { stash } from "../mud/stash";
+import { worldStash } from "../mud/stash";
 import { useAccount } from "wagmi";
 
 export function useSmartCharacter() {
-  const { address } = useAccount();
-  const smartCharacterTable = useRecord({
-    stash,
-    table: mudConfig.namespaces.eveworld.tables.CharactersTable,
-    key: {
-      characterId: BigInt(
-        "4276622189327514248206909304626120238329416063225567926126067537427521625365",
-      ),
-    },
-  });
+	const { address } = useAccount();
 
-  console.log("smartCharacterTable", smartCharacterTable);
+	const smartCharacterByAddress = useRecord({
+		stash: worldStash,
+		table: mudConfig.namespaces.eveworld.tables.CharactersByAddressTable,
+		key: {
+			characterAddress: address as `0x${string}`,
+		},
+	});
 
-  const smartCharacter: SmartCharacter = {
-    address: smartCharacterTable?.characterAddress || address || "0x",
-    id: smartCharacterTable?.characterId.toString() || "",
-    name: smartCharacterTable?.characterAddress || "",
-    isSmartCharacter: smartCharacterTable != undefined,
-    eveBalanceWei: 0,
-    gasBalanceWei: 0,
-    image: "",
-    smartAssemblies: [],
-  };
+	const smartCharacterRecord = useRecord({
+		stash: worldStash,
+		table: mudConfig.namespaces.eveworld.tables.EntityRecordOffchainTable,
+		key: {
+			entityId: smartCharacterByAddress?.characterId || BigInt(0),
+		},
+	});
 
-  console.log("smartCharacter", smartCharacter);
+	const smartCharacter: SmartCharacter = {
+		address: smartCharacterByAddress?.characterAddress || address || "0x",
+		id: smartCharacterByAddress?.characterId.toString() || "",
+		name: smartCharacterRecord?.name || "",
+		isSmartCharacter: smartCharacterRecord != undefined,
+		eveBalanceWei: 0, // TODO: Query from address
+		gasBalanceWei: 0, // TODO: Query from ERC-20 contract
+		image: "",
+		smartAssemblies: [],
+	};
 
-  return { smartCharacter };
+	console.log("smartCharacter", smartCharacter);
+
+	return { smartCharacter };
 }

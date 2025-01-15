@@ -9,12 +9,22 @@ import { useNotification } from "@eveworld/contexts";
 import EntityView from "./components/EntityView";
 import { Explorer } from "./Explorer";
 import { useSmartCharacter } from "./hooks/useSmartCharacter";
+import { useEffect } from "react";
+import { Severity } from "@eveworld/types";
 
 export const App = () => {
   const { isLive, message, percentage } = useSyncProgress();
   const { smartCharacter } = useSmartCharacter();
   const { chain, address } = useAccount();
-  const { notification } = useNotification();
+  const { notification, notify, handleClose } = useNotification();
+
+  useEffect(() => {
+    if (!isLive) {
+      notify({ type: Severity.Info, message: "Loading..." });
+    } else {
+      handleClose();
+    }
+  }, [handleClose, isLive, notify]);
 
   if (!address) return <ConnectWallet />;
 
