@@ -14,10 +14,9 @@
 	"dependencies": {
 		"@eveworld/contexts": "0.1.0",
 		"@eveworld/contracts": "0.1.0",
-		"@eveworld/types": "0.0.9",
+		"@eveworld/types": "0.0.10",
 		"@eveworld/ui-components": "0.0.11",
 		"@eveworld/utils": "0.0.9",
-		"@eveworld/world": "0.0.17",
 		"@latticexyz/common": "2.2.15-entrykit-1c24e4739090d185171d9f8e4a257735e4710b70",
 		"@latticexyz/config": "2.2.15-entrykit-1c24e4739090d185171d9f8e4a257735e4710b70",
 		"@latticexyz/explorer": "2.2.15-entrykit-1c24e4739090d185171d9f8e4a257735e4710b70",
@@ -49,7 +48,6 @@
 		"eslint-plugin-react": "7.31.11",
 		"eslint-plugin-react-hooks": "4.6.0",
 		"vite": "^4.2.1",
-		"vite-plugin-commonjs": "^0.10.4",
 		"wait-port": "^1.0.4"
 	}
 }
