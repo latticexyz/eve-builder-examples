@@ -41,7 +41,6 @@
     "wagmi": "^2.14.0"
   },
   "devDependencies": {
-    "@eveworld/common-constants": "0.0.13",
     "@types/react": "18.3.1",
     "@types/react-dom": "18.2.7",
     "@vitejs/plugin-react": "^3.1.0",

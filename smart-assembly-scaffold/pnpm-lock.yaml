@@ -198,9 +198,6 @@ importers:
         specifier: ^2.14.0
         version: 2.14.0(@tanstack/react-query@5.62.7)(@types/react@18.3.1)(react@18.3.1)(typescript@5.6.3)(viem@2.21.54)(zod@3.23.8)
     devDependencies:
-      '@eveworld/common-constants':
-        specifier: 0.0.13
-        version: 0.0.13(typescript@5.6.3)(zod@3.23.8)
       '@types/react':
         specifier: 18.3.1
         version: 18.3.1
@@ -3095,6 +3092,7 @@ packages:
       - typescript
       - utf-8-validate
       - zod
+    dev: false
 
   /@eveworld/contexts@0.1.0(@types/react@18.3.1)(react-dom@18.3.1)(typescript@5.6.3)(zod@3.23.8):
     resolution: {integrity: sha512-H++Koq9atZ3SboXj71eKJihzfb6FtcvWzPKdZjaVJlnV0/IFOunUbpFE2Tb3eLHKx8tadY7/bo+Xfm04RI2y4w==}
@@ -3503,6 +3501,7 @@ packages:
       yargs: 17.7.2
     transitivePeerDependencies:
       - supports-color
+    dev: false
 
   /@latticexyz/block-logs-stream@2.2.14(@aws-sdk/client-kms@3.679.0)(asn1.js@5.4.1)(typescript@5.4.2)(zod@3.23.8):
     resolution: {integrity: sha512-/+2ia/7dMX/jbFGcNfEb9WgviGcsbmciqvTby4cGBULbPY3Mc+I9EVP4cLrabBV3FFCfcYwrjzYlVKUq7WunEA==}
@@ -3571,6 +3570,7 @@ packages:
       - typescript
       - utf-8-validate
       - zod
+    dev: false
 
   /@latticexyz/cli@2.2.14:
     resolution: {integrity: sha512-PDQKLJfZoPsRx1k65qNcnHlRuM2tN/9QGNY9NhOd4f3vyW4/KAIJXX35Dvar/h0tGFt/EU75EbyoNDdjxnwkBQ==}
@@ -3659,6 +3659,7 @@ packages:
       - bufferutil
       - supports-color
       - utf-8-validate
+    dev: false
 
   /@latticexyz/common@2.2.14(@aws-sdk/client-kms@3.679.0)(asn1.js@5.4.1)(typescript@5.4.2)(zod@3.23.8):
     resolution: {integrity: sha512-4H7B6keHFREGDdoaywP8+rbRHRp8xG5ewhA5H/xTQ1Eo2e8Ug3vyAogm5CawodD2AGihk13OKlAplz9HhbP9Gw==}
@@ -3775,6 +3776,7 @@ packages:
       - typescript
       - utf-8-validate
       - zod
+    dev: false
 
   /@latticexyz/common@2.2.8(typescript@5.6.3)(zod@3.23.8):
     resolution: {integrity: sha512-JUaom0QReYxl0oCLE58g51F5Q4z+VbhihbRXJm7aIl1ZnqRFt0rBykMAXzk5fCDZlbKuxU740VzvNBvmfzqsKw==}
@@ -3802,6 +3804,7 @@ packages:
       - typescript
       - utf-8-validate
       - zod
+    dev: false
 
   /@latticexyz/config@2.2.14(@aws-sdk/client-kms@3.679.0)(asn1.js@5.4.1)(typescript@5.4.2)(zod@3.23.8):
     resolution: {integrity: sha512-BMO/vQYPqp2HlawDo0IrCOxK9bvF3etsyf5zG0cNfDiue75zvZ94g2Yi/27h0dKYEDw9EYQv75NYVM6h0QMefw==}
@@ -3875,6 +3878,7 @@ packages:
       - typescript
       - utf-8-validate
       - zod
+    dev: false
 
   /@latticexyz/config@2.2.8(typescript@5.6.3)(zod@3.23.8):
     resolution: {integrity: sha512-edD6YFI2fu/CGHBuKwwraewDbJuBLmFRnCP24Mrk7ZD90A0k81M41Frtx90R+ihVuS9hiTk7OohNNuTxvX4PDw==}
@@ -3893,6 +3897,7 @@ packages:
       - typescript
       - utf-8-validate
       - zod
+    dev: false
 
   /@latticexyz/explorer@2.2.14(@babel/core@7.26.0)(@types/react-dom@18.3.1)(@types/react@18.3.12)(postcss@8.4.47)(react-native@0.76.0)(typescript@5.6.3):
     resolution: {integrity: sha512-1YwLpzb/8uRFc/KbHRPagw9QjDZyyRQauDv4mIhb7bwVeJcSZ4c7I2FznK46uGCVC3Po62jHnL3EerB4GHALSQ==}
@@ -4121,6 +4126,7 @@ packages:
       strip-ansi: 7.1.0
       table: 6.8.2
       yargs: 17.7.2
+    dev: false
 
   /@latticexyz/protocol-parser@2.2.14(@aws-sdk/client-kms@3.679.0)(asn1.js@5.4.1)(typescript@5.4.2)(zod@3.23.8):
     resolution: {integrity: sha512-r6WtonqWL/0BU9geaBlzMF/qN5PIPBOu53Wm1IK0vvzXKvGy62BmkjmVclkbdPM41LGsFCMHVX5OugtQ4r8qQg==}
@@ -4190,6 +4196,7 @@ packages:
       - typescript
       - utf-8-validate
       - zod
+    dev: false
 
   /@latticexyz/protocol-parser@2.2.8(typescript@5.6.3)(zod@3.23.8):
     resolution: {integrity: sha512-ndGOdHDAsk0hsk7r08mN3CXQ/awromz9E055vvMZIwZjAtKQmfQMd+QMQWFXUmC6IVzJ2Qxu7K7Wq8egQCfJNA==}
@@ -4207,6 +4214,7 @@ packages:
       - typescript
       - utf-8-validate
       - zod
+    dev: false
 
   /@latticexyz/recs@2.2.14(typescript@5.6.3)(zod@3.23.8):
     resolution: {integrity: sha512-QMEBz4nmfkS7yg1N0Ol7BlNmfAJtQO4XYbBkHGhEdalT0XizyIf6mlnK9/EUbsSeECxZqNaUixIVpCV/aOU4NQ==}
@@ -4278,6 +4286,7 @@ packages:
       - typescript
       - utf-8-validate
       - zod
+    dev: false
 
   /@latticexyz/schema-type@2.2.8(typescript@5.6.3)(zod@3.23.8):
     resolution: {integrity: sha512-ZdY/onXRpLSQoBP65g/P6kUgeYm3u08P90B/BxdDiXZ97DHatpMqnDv0JcsBl+MFHL8MUcMMAa5oHE9rqK1Ucg==}
@@ -4289,6 +4298,7 @@ packages:
       - typescript
       - utf-8-validate
       - zod
+    dev: false
 
   /@latticexyz/stash@2.2.14(react@18.3.1)(typescript@5.6.3)(zod@3.23.8):
     resolution: {integrity: sha512-cA9x8I6ZtDSfnMusKyl1212LMxxOB8tfUSKK0cm75LkEtwzTkjHLNI1AptlSbw/bYs8dmK7uH8mf1Eqd3I651g==}
@@ -4646,6 +4656,7 @@ packages:
       - typescript
       - utf-8-validate
       - zod
+    dev: false
 
   /@latticexyz/store@2.2.8(typescript@5.6.3)(zod@3.23.8):
     resolution: {integrity: sha512-VdJCxtm8vRkvsPJxogpH0eKoecOL5wUVAxdy2ExMewfV4LaakECHiVWGd4+TIpzR0Wf33TKe+ucpoSjq/ret/A==}
@@ -4666,6 +4677,7 @@ packages:
       - typescript
       - utf-8-validate
       - zod
+    dev: false
 
   /@latticexyz/utils@2.2.14:
     resolution: {integrity: sha512-JzBBKZRtLXtwl/f6ThtlrSOUQYVNAOYXakYdqOaohAAVaGmALfeSTufP1pQfq3IaT2StOt6mA6/HdUUHOQol3g==}
@@ -4688,6 +4700,7 @@ packages:
       mobx: 6.13.5
       proxy-deep: 3.1.1
       rxjs: 7.5.5
+    dev: false
 
   /@latticexyz/world-module-metadata@2.2.14(@aws-sdk/client-kms@3.679.0)(asn1.js@5.4.1)(typescript@5.4.2)(zod@3.23.8):
     resolution: {integrity: sha512-X7w+uBGQEclydVKhgzI9v4q/UmUoM7w16GDMAgdnRycoH/Hq7szpzdQeqBFhma2jBIlUsti0MPo9fPHBaQ9S1Q==}
@@ -4718,6 +4731,7 @@ packages:
       - typescript
       - utf-8-validate
       - zod
+    dev: false
 
   /@latticexyz/world-modules@2.2.14(typescript@5.6.3):
     resolution: {integrity: sha512-3zccAjrV3ZzfDDqZiKfGZGlWh5aFitsuKgHE5J7I+iSbOZdPpUUZDfJQSfx7diqhr4cRA+J9UMi3YkO5sOCVvA==}
@@ -4753,6 +4767,7 @@ packages:
       - supports-color
       - typescript
       - utf-8-validate
+    dev: false
 
   /@latticexyz/world@2.2.14(@aws-sdk/client-kms@3.679.0)(asn1.js@5.4.1)(typescript@5.4.2)(zod@3.23.8):
     resolution: {integrity: sha512-1qwwnu2YueRvIJMcyRR1AvbM2w6pm3A2htoBozrdI+V/iYcFsSDWUNNiFSzb6Kq/uijxZYoZZCkT3gozJXp2Tw==}
@@ -4846,6 +4861,7 @@ packages:
       - typescript
       - utf-8-validate
       - zod
+    dev: false
 
   /@latticexyz/world@2.2.8(typescript@5.6.3)(zod@3.23.8):
     resolution: {integrity: sha512-Gd3Z8LbpSmtZbzAusl8bzOndyN8EoFfo5WAmBNU0KcustTXXw5cymx2pJ3hM6lGwddpRl3Ov9jOZbvuebefpcw==}
@@ -4868,6 +4884,7 @@ packages:
       - typescript
       - utf-8-validate
       - zod
+    dev: false
 
   /@leichtgewicht/ip-codec@2.0.5:
     resolution: {integrity: sha512-Vo+PSpZG2/fmgmiNzYK9qWRh8h/CHrwD0mo1h1DzL4yzHNSfWYujGTYsWGreD000gcgmZ7K4Ys6Tx9TxtsKdDw==}
@@ -5578,6 +5595,7 @@ packages:
     resolution: {integrity: sha512-p+4cb332SFCrReJkCYe8Xzm0OWi4Jji5jVdIZRL/PmacmDkFNw6MrrV+gGpiPxLHbV+zKFRywUWbaseT+tZRXg==}
     dependencies:
       '@noble/hashes': 1.4.0
+    dev: false
 
   /@noble/curves@1.4.2:
     resolution: {integrity: sha512-TavHr8qycMChk8UwMld0ZDRvatedkzWfH8IiaeGCfymOP5i0hSCozz9vHOL0nkwk7HRMlFnAiKpS2jrUmSybcw==}
@@ -12115,6 +12133,7 @@ packages:
     dependencies:
       typescript: 5.4.2
       zod: 3.23.8
+    dev: false
 
   /abitype@1.0.5(typescript@5.6.3)(zod@3.23.8):
     resolution: {integrity: sha512-YzDhti7cjlfaBhHutMaboYB21Ha3rXR9QTkNJFzYC4kC8YclaiwPBBBJY8ejFdu2wnJeZCVZSMlQJ7fi8S6hsw==}
@@ -12129,6 +12148,7 @@ packages:
     dependencies:
       typescript: 5.6.3
       zod: 3.23.8
+    dev: false
 
   /abitype@1.0.6(typescript@5.4.2)(zod@3.23.8):
     resolution: {integrity: sha512-MMSqYh4+C/aVqI2RQaWqbvI4Kxo5cQV40WQ4QFtDnNzCkqChm8MuENhElmynZlO0qUy/ObkEUaXtKqYnx1Kp3A==}
@@ -16564,6 +16584,7 @@ packages:
       ws: '*'
     dependencies:
       ws: 8.17.1
+    dev: false
 
   /isows@1.0.6(ws@8.18.0):
     resolution: {integrity: sha512-lPHCayd40oW98/I0uvgaHKWCSvkzY27LjWLbtzOm64yQ+G3Q5npjjbdppU65iZXkK1Zt+kH9pfegli0AYfwYYw==}
@@ -21437,6 +21458,7 @@ packages:
       - bufferutil
       - utf-8-validate
       - zod
+    dev: false
 
   /viem@2.21.6(typescript@5.6.3)(zod@3.23.8):
     resolution: {integrity: sha512-YX48IVl6nZ4FRsY4ypv2RrxtQVWysIY146/lBW53tma8u32h8EsiA7vecw9ZbrueNUy/asHR4Egu68Z6FOvDzQ==}
@@ -21460,6 +21482,7 @@ packages:
       - bufferutil
       - utf-8-validate
       - zod
+    dev: false
 
   /vite-plugin-svgr@3.3.0(typescript@5.6.3)(vite@5.4.10):
     resolution: {integrity: sha512-vWZMCcGNdPqgziYFKQ3Y95XP0d0YGp28+MM3Dp9cTa/px5CKcHHrIoPl2Jw81rgVm6/ZUNONzjXbZQZ7Kw66og==}
@@ -21783,6 +21806,7 @@ packages:
     dependencies:
       '@noble/curves': 1.7.0
       '@noble/hashes': 1.6.1
+    dev: false
 
   /webextension-polyfill@0.10.0:
     resolution: {integrity: sha512-c5s35LgVa5tFaHhrZDnr3FpQpjj1BB+RXhLTYUxGqBVN460HkbM8TBtEqdXWbpTKfzwCcjAZVF7zXCYSKtcp9g==}

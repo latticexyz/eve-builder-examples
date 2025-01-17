@@ -81,12 +81,8 @@ export function useSmartAssembly() {
   });
 
   /**
-	/**
-	 * Ownership Information
-	 *
-  /**
-	 * Ownership Information
-	 *
+   * Ownership Information
+   *
    * This section retrieves the ownership details for a given `smartObjectId`.
    * Instead of importing the MUD configuration for this namespace, it directly
    * queries the Indexer API. This approach avoids additional dependencies.
@@ -131,7 +127,6 @@ export function useSmartAssembly() {
     getOwner();
     // If on local and unable to query the sqlite indexer, you can manually set the owner
     // instead of calling the above function
-    setOwner(getAddress("0xe51b9d799ec69cc738267231c40e4a58758a0afe"));
   }, [smartObjectId]);
 
   const smartCharacterByAddress = useRecord({
@@ -195,6 +190,13 @@ export function useSmartAssembly() {
     };
   }
 
+  /**
+	Construct the SmartAssembly object based on its type.
+	Some fields are left empty or assigned placeholder values since they are not used in this example.
+	If needed, you can fetch additional data directly from the World API using the `fetch` method, 
+	which encapsulates logic to retrieve this information.
+	*/
+
   let smartAssembly: SmartAssemblyType<SmartAssemblies> | undefined;
 
   // SMART GATE VALUES //
@@ -215,12 +217,6 @@ export function useSmartAssembly() {
     },
   });
 
-  /**
-	Construct the SmartAssembly object based on its type.
-	Some fields are left empty or assigned placeholder values since they are not used in this example.
-	If needed, you can fetch additional data directly from the World API using the `fetch` method, 
-	which encapsulates logic to retrieve this information.
-	*/
   if (smartAssemblyBase)
     switch (smartAssemblyType?.smartAssemblyType) {
       case 0:
