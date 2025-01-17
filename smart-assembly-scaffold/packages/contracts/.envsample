@@ -5,15 +5,16 @@
 # development. Please do not commit changes to this file!
 #
 # Enable debug logs for MUD CLI
-DEBUG=mud:*
+DEBUG=mud:\*
+
 #
 # Anvil default private key:
-#Deployer 
+#Deployer
 PRIVATE_KEY=0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80
 WORLD_ADDRESS=0x8a791620dd6260079bf849dc5567adc3f2fdc318
 
 #Player interacting with the SSU
-PLAYER_PRIVATE_KEY=0x59c6995e998f97a5a0044966f0945389dc9e86dae88c7a8412f4603b6b78690d
+TEST_PLAYER_PRIVATE_KEY=0x59c6995e998f97a5a0044966f0945389dc9e86dae88c7a8412f4603b6b78690d
 
 #Local RPC
 RPC_URL=http://127.0.0.1:8545 #Forked Anvil Local RPC URL
@@ -28,3 +29,5 @@ WORLD_ADDRESS=0x8a791620dd6260079bf849dc5567adc3f2fdc318 #Local World Address
 #SMART STORAGE UNIT ID
 #Copy this info from the in-game Smart Storage Unit
 SSU_ID=23563565629941518662089712946553773054394767785169002865278787679356860010098
+ITEM_IN_ID=12345
+ITEM_OUT_ID=54321
