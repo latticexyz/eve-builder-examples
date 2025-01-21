@@ -31,7 +31,7 @@ export function useSmartCharacter() {
     stash: worldStash,
     table: worldMudConfig.namespaces.eveworld.tables.CharactersByAddressTable,
     key: {
-      characterAddress: address as `0x${string}`,
+      characterAddress: address as `0x${string}` || "",
     },
   });
 

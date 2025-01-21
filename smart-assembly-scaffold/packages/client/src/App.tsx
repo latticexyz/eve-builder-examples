@@ -15,7 +15,7 @@ import { Severity } from "@eveworld/types";
 export const App = () => {
   const { isLive, message, percentage } = useSyncProgress();
   const { smartCharacter } = useSmartCharacter();
-  const { chain, address } = useAccount();
+  const { chain, address, isConnected } = useAccount();
   const { notification, notify, handleClose } = useNotification();
 
   useEffect(() => {
@@ -26,7 +26,7 @@ export const App = () => {
     }
   }, [handleClose, isLive, notify]);
 
-  if (!address) return <ConnectWallet />;
+  if (!address || !isConnected) return <ConnectWallet />;
 
   return (
     <>
