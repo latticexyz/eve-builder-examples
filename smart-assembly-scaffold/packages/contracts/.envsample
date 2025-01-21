@@ -1,12 +1,11 @@
 # This .env file is for demonstration purposes only.
 #
 # This should usually be excluded via .gitignore and the env vars attached to
-# your deployment enviroment, but we're including this here for ease of local
+# your deployment environment, but we're including this here for ease of local
 # development. Please do not commit changes to this file!
 #
 # Enable debug logs for MUD CLI
-DEBUG=mud:\*
-
+DEBUG=mud:*
 #
 # Anvil default private key:
 #Deployer
@@ -29,5 +28,3 @@ WORLD_ADDRESS=0x8a791620dd6260079bf849dc5567adc3f2fdc318 #Local World Address
 #SMART STORAGE UNIT ID
 #Copy this info from the in-game Smart Storage Unit
 SSU_ID=23563565629941518662089712946553773054394767785169002865278787679356860010098
-ITEM_IN_ID=12345
-ITEM_OUT_ID=54321
