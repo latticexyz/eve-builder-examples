@@ -96,7 +96,7 @@ contract SmartTurretTest is MudTest {
         player,
         200004,
         CharacterEntityRecord({ typeId: 123, itemId: 234, volume: 100 }),
-        EntityRecordOffchainTableData({ name: "harryporter", dappURL: "noURL", description: "." }),
+        EntityRecordOffchainTableData({ name: "harrypotter", dappURL: "noURL", description: "." }),
         ""
       );
     }

@@ -1,7 +1,7 @@
 import { useRecord } from "../mud/useRecord";
 import worldMudConfig from "contracts/eveworld/mud.config";
 import { SmartCharacter } from "@eveworld/types";
-import { worldStash } from "../mud/stash";
+import { stash } from "../mud/stash";
 import { useAccount } from "wagmi";
 
 /**
@@ -28,7 +28,7 @@ export function useSmartCharacter() {
    * - Key: `{ characterAddress }`
    */
   const smartCharacterByAddress = useRecord({
-    stash: worldStash,
+    stash,
     table: worldMudConfig.namespaces.eveworld.tables.CharactersByAddressTable,
     key: {
       characterAddress: address as `0x${string}` || "",
@@ -42,7 +42,7 @@ export function useSmartCharacter() {
    * - If no character ID is found, defaults to `BigInt(0)` (no record).
    */
   const smartCharacterRecord = useRecord({
-    stash: worldStash,
+    stash,
     table: worldMudConfig.namespaces.eveworld.tables.EntityRecordOffchainTable,
     key: {
       entityId: smartCharacterByAddress?.characterId || BigInt(0),

@@ -12,13 +12,13 @@ import { useQuery } from "@tanstack/react-query";
 /** @internal */
 export const StashSyncContext = createContext<{
   sync?: SyncToStashResult;
+
 } | null>(null);
 
 export type Props = {
   address: Address;
   startBlock?: bigint;
   stash: Stash;
-  worldStash: Stash;
   children: ReactNode;
 };
 
@@ -26,7 +26,6 @@ export function StashSyncProvider({
   address,
   startBlock,
   stash,
-  worldStash,
   children,
 }: Props) {
   const existingValue = useContext(StashSyncContext);
@@ -44,7 +43,7 @@ export function StashSyncProvider({
     queryFn: () =>
       // TODO: clear stash
       syncToStash({
-        stash: { ...stash, ...worldStash },
+        stash,
         publicClient: client.extend(publicActions) as PublicClient,
         address,
         startBlock,

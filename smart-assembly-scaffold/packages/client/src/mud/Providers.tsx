@@ -2,7 +2,7 @@ import { WagmiProvider } from "wagmi";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { ReactNode } from "react";
 import { StashSyncProvider } from "./StashSyncProvider";
-import { stash, worldStash } from "./stash";
+import { stash } from "./stash";
 import { Address } from "viem";
 import { wagmiConfig } from "./wagmiConfig";
 import { darkTheme, RainbowKitProvider } from "@rainbow-me/rainbowkit";
@@ -32,7 +32,6 @@ export function Providers({ worldDeploy, children }: Props) {
             address={worldDeploy.address}
             startBlock={worldDeploy.blockNumber ?? undefined}
             stash={stash}
-            worldStash={worldStash}
           >
             <NotificationProvider>{children}</NotificationProvider>
           </StashSyncProvider>
