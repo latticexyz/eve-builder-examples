@@ -47,7 +47,12 @@ export function StashSyncProvider({
         publicClient: client.extend(publicActions) as PublicClient,
         address,
         startBlock,
-        filters: getSyncFilters(stash.get().config),
+        filters: getSyncFilters(stash.get().config).filter(
+          (filter) =>
+            // Temporarily excluding the `InventoryTable` until indexer issue is fixed
+            filter.tableId !==
+            "0x7462657665776f726c64000000000000496e76656e746f72795461626c650000"
+        ),
       }),
     staleTime: Infinity,
     refetchOnMount: false,
