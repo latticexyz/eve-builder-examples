@@ -8,11 +8,11 @@ import { useClient } from "wagmi";
 import { chainId } from "../common";
 import { Address, publicActions, PublicClient } from "viem";
 import { useQuery } from "@tanstack/react-query";
+import { getSyncFilters } from "./getSyncFilters";
 
 /** @internal */
 export const StashSyncContext = createContext<{
   sync?: SyncToStashResult;
-
 } | null>(null);
 
 export type Props = {
@@ -47,6 +47,7 @@ export function StashSyncProvider({
         publicClient: client.extend(publicActions) as PublicClient,
         address,
         startBlock,
+        filters: getSyncFilters(stash.get().config),
       }),
     staleTime: Infinity,
     refetchOnMount: false,
